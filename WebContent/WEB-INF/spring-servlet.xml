@@ -11,6 +11,7 @@
 
 	<!-- scan scope.. -->
 	<context:component-scan base-package="mvc.controller" />
+	<context:component-scan base-package="mvc.service" />
 	
 	<!-- view resolvers setting -->
 	<bean
@@ -23,4 +24,17 @@
 	<!-- multipart resolve / spring framework 에서는 단 하나의 MultipartResolver만 등록가능하고, id를 multipartResolver 로 등록해야됨. dispatcherServlet이 id로 검색해서 사용-->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />	
 	
+	<!-- mailSender -->
+	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="username" value="ncs13master@gmail.com" /> <!-- 자신의 gmail 입력 -->
+		<property name="password" value="1q2w3e4r~" />
+		<property name="port" value="587" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.auth">true</prop>				
+			</props>
+		</property>
+	</bean>
 </beans>
